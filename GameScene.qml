@@ -1,37 +1,25 @@
 import QtQuick
-import QtQuick.Particles
 
+//  TODO: Maybe make singleton?
 Item {
     id: root
-    property alias xPos: pulseEmitter.x
-    property alias yPos: pulseEmitter.y
+    property alias running: timer.running
     Timer {
-        interval: 3500
+        id: timer
+        interval: 1000
         triggeredOnStart: true
         running: true
         repeat: true
-        onTriggered: {
-            pulseEmitter.pulse(500);
-        }
-    }
-    ParticleSystem {
-        id: particles
-        anchors.fill: parent
-        ItemParticle {
-            delegate: Rectangle {
-                color: "red"
-                height: 5
-                width: 5
+        onTriggered: function() {
+            // handle events
+            // update
+            // render
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                if(child instanceof Actor) {
+                    child.onTick()
+                }
             }
-        }
-        Emitter {
-            id: pulseEmitter
-            emitRate: 1000
-            lifeSpan: 2000
-            enabled: false
-            velocity: AngleDirection{magnitude: 64; angleVariation: 360}
-            size: 24
-            sizeVariation: 8
         }
     }
 }

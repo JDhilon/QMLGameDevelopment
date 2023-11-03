@@ -18,6 +18,7 @@ qt_add_qml_module(appGameDevelopment
     QML_FILES Main.qml
     QML_FILES GameScene.qml
     QML_FILES PulseEmitter.qml
+    QML_FILES Actor.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
